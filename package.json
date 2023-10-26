@@ -1,0 +1,13 @@
+{
+  "name": "project-team109",
+  "version": "1.0.0",
+  "description": "For configuration only - Do not install dependencies here",
+  "scripts": {
+    "test": "echo No tests yet",
+    "api": "cd ./backend-api && npm run api",
+    "app": "cd ./frontend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
