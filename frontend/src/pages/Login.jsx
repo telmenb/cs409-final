@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-function Register() {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,18 +16,6 @@ function Register() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Typography
-        variant="h3"
-        style={{ marginTop: '100px', textAlign: 'center' }}
-      >
-        GeoQuizzr
-      </Typography>
-      <Typography
-        variant="h5"
-        style={{ marginTop: '20px', textAlign: 'center' }}
-      >
-        Let&apos;s get your geo game up
-      </Typography>
       <Paper
         elevation={3}
         style={{
@@ -35,10 +23,12 @@ function Register() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '20px',
+          marginTop: '100px',
           borderRadius: '10px',
         }}
       >
+        <Typography variant="h3" style={{ marginTop: '20px' }}>GeoQuizzr</Typography>
+        <Typography variant="h5" style={{ alignSelf: 'start', marginTop: '35px', marginLeft: '5px' }}>Sign in</Typography>
         <form style={{ width: '100%' }}>
           <TextField
             variant="outlined"
@@ -64,16 +54,16 @@ function Register() {
             onClick={handleLogin}
             style={{ marginTop: '20px', borderRadius: '30px' }}
           >
-            Register
+            Sign in
           </Button>
         </form>
         <Typography sx={{ marginTop: '10px' }}>
-          Already registered? &nbsp;
-          <Link to="/login">Sign in</Link>
+          New here? &nbsp;
+          <Link to="/register">Join now</Link>
         </Typography>
       </Paper>
     </Container>
   );
 }
 
-export default Register;
+export default Login;

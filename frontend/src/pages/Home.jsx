@@ -1,43 +1,41 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Container, Typography } from '@mui/material';
 import CardGrid from '../components/CardGrid';
 
 function Home() {
-  const navigate = useNavigate();
   const [cardsData, setCardsData] = useState(undefined);
-  const [clicked, setClicked] = useState(false);
 
   async function getCardsData() {
     const response = await fetch('http://localhost:4000/api/cards');
     if (response.status === 200) {
       const json = await response.json();
-      setCardsData(json);
+      setCardsData(json.cards);
     }
   }
 
-  async function handleButtonClick() {
-    if (!clicked) {
-      setClicked(true);
-      getCardsData();
-    } else {
-      setClicked(false);
-      setCardsData(null);
-    }
-  }
+  useEffect(() => {
+    getCardsData();
+  }, []);
 
   return (
-    <div className="home">
-      <h2>Hello GeoQuizzr!</h2>
-      <button type="button" onClick={handleButtonClick}>
-        {!clicked ? <p>Call API</p> : <p>Clear Data</p>}
-      </button>
-      <button type="button" onClick={() => navigate('/carousel')}> Go to Carousel View</button>
+    <Container
+      sx={{
+        display: 'flex',
+        gap: '20px',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <Typography variant="h4">
+        Hello GeoQuizzr!
+      </Typography>
       { cardsData && (
         <CardGrid
-          cardData={cardsData.cards}
+          cardData={cardsData}
         />
       )}
-    </div>
+    </Container>
   );
 }
 

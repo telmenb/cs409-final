@@ -1,44 +1,28 @@
-import React, { useState } from 'react';
-import './Carousel.css';
+import React from 'react';
+import MuiCarousel from 'react-material-ui-carousel';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
 function Carousel(props) {
   const { cardData } = props;
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const previousImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? cardData.length - 1 : prevIndex - 1));
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === cardData.length - 1 ? 0 : prevIndex + 1));
-  };
 
   return (
-    <div className="app-c">
-      <button
-        type="button"
-        className="nav-btn"
-        onClick={previousImage}
-      >
-        Prev
-      </button>
-      <div>
-        <Card
-          name={cardData[currentImageIndex].name}
-          description={cardData[currentImageIndex].description}
-          image={cardData[currentImageIndex].imgSrc}
-        />
-      </div>
-      <button
-        type="button"
-        className="nav-btn"
-        onClick={nextImage}
-      >
-        Next
-      </button>
-    </div>
+    <MuiCarousel
+      autoPlay={false}
+      indicators={false}
+      navButtonsAlwaysVisible
+      sx={{ width: '500px' }}
+    >
+      {
+        cardData.map((card) => (
+          <Card
+            name={card.name}
+            description={card.description}
+            image={card.imgSrc}
+          />
+        ))
+      }
+    </MuiCarousel>
   );
 }
 

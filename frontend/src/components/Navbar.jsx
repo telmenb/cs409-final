@@ -1,15 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Grid, Link } from '@mui/material';
 
 function Navbar() {
   return (
-    <header>
-      <div className="container">
-        <Link to="/">
-          <h1>Home</h1>
+    <Grid
+      container
+      spacing={4}
+      sx={{
+        minWidth: '100vw',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '10px',
+      }}
+    >
+      <Grid item>
+        <Link href="/" underline="none">
+          Home
         </Link>
-      </div>
-    </header>
+      </Grid>
+      <Grid item>
+        <Link href="/carousel" underline="none">
+          Carousel
+        </Link>
+      </Grid>
+    </Grid>
   );
 }
 
