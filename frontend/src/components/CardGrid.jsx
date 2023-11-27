@@ -9,7 +9,7 @@ function CardGrid(props) {
   return (
     <Grid container spacing={4} justifyContent="center">
       {cardData.map((card) => (
-        <Grid item key={card.id}>
+        <Grid item key={card.id} sx={{ maxWidth: 345 }}>
           <Card
             name={card.name}
             description={card.description}
