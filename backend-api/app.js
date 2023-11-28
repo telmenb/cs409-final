@@ -24,8 +24,8 @@ app.use((req, res, next) => {
 });
 
 // Set Routes
-const cards = require('./routes/cards');
-app.use('/api/cards', cards);
+app.use('/api/cards', require('./routes/cards'));
+app.use('/api/users', require('./routes/users'));
 
 // Listen
 app.listen(PORT, () => {

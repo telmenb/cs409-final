@@ -1,4 +1,5 @@
 const express = require('express');
+const authGuard = require('../middleware/authGuard');
 const router = express.Router();
 
 const dummyData = [
@@ -18,6 +19,8 @@ const dummyData = [
     description: 'Image of the USA',
   },
 ];
+
+router.use(authGuard);
 
 // Triggered when request is made to 'api/cards/'
 router.get('/', (req, res) => {

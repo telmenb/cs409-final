@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   TextField, Button, Paper, Typography, Container,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(undefined);
+  const { dispatch } = useContext(UserContext);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    const response = await fetch('http://localhost:4000/api/users/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 200) {
+      const json = await response.json();
+      localStorage.setItem('user', JSON.stringify(json));
+      dispatch({ type: 'LOGIN', payload: json });
+    } else {
+      const errorMessage = await response.text();
+      setError(errorMessage);
+    }
   };
 
   return (
@@ -29,7 +46,7 @@ function Login() {
       >
         <Typography variant="h3" style={{ marginTop: '20px' }}>GeoQuizzr</Typography>
         <Typography variant="h5" style={{ alignSelf: 'start', marginTop: '35px', marginLeft: '5px' }}>Sign in</Typography>
-        <form style={{ width: '100%' }}>
+        <form style={{ width: '100%', textAlign: 'center' }}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -47,6 +64,15 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          { error && (
+            <Typography
+              variant="subtitle1"
+              color="red"
+              style={{ marginTop: '10px' }}
+            >
+              {error}
+            </Typography>
+          )}
           <Button
             variant="contained"
             color="primary"

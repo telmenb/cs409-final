@@ -6,7 +6,14 @@ function Home() {
   const [cardsData, setCardsData] = useState(undefined);
 
   async function getCardsData() {
-    const response = await fetch('http://localhost:4000/api/cards');
+    // TODO: Implement request builder to add auth header
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    const response = await fetch('http://localhost:4000/api/cards', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     if (response.status === 200) {
       const json = await response.json();
       setCardsData(json.cards);

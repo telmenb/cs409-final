@@ -27,5 +27,6 @@ module.exports = {
     'import/no-dynamic-require': 0,
     'global-require': 0,
     'linebreak-style': 0,
+    'react/prop-types': 0,
   },
 };

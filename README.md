@@ -8,7 +8,7 @@ Make sure to have the following dependencies/tools installed:
 
 After cloning the repo, run the following command in the root directory of the project:  
 ```bash
-touch ./backend-api/.env && echo "PORT=4000" > ./backend-api/.env
+touch ./backend-api/.env && echo "PORT=4000\nACCESS_TOKEN_SECRET=12345" > ./backend-api/.env
 ```
 (this just creates a file called `.env` in `./backend-api/` and writes `PORT=4000` to the newly created file)
 

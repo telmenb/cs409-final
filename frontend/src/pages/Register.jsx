@@ -7,11 +7,27 @@ import { Link } from 'react-router-dom';
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(undefined);
+  const [confirmation, setConfirmation] = useState(undefined);
 
-  const handleLogin = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    const response = await fetch('http://localhost:4000/api/users', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 201) {
+      setError(undefined);
+      setConfirmation('User successfully created');
+    } else {
+      const errorMessage = await response.text();
+      setConfirmation(undefined);
+      setError(errorMessage);
+    }
   };
 
   return (
@@ -39,7 +55,7 @@ function Register() {
           borderRadius: '10px',
         }}
       >
-        <form style={{ width: '100%' }}>
+        <form style={{ width: '100%', textAlign: 'center' }}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -57,11 +73,29 @@ function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          { error && (
+            <Typography
+              variant="subtitle1"
+              color="red"
+              style={{ marginTop: '10px' }}
+            >
+              {error}
+            </Typography>
+          )}
+          { confirmation && (
+            <Typography
+              variant="subtitle1"
+              color="green"
+              style={{ marginTop: '10px' }}
+            >
+              {confirmation}
+            </Typography>
+          )}
           <Button
             variant="contained"
             color="primary"
             fullWidth
-            onClick={handleLogin}
+            onClick={handleRegister}
             style={{ marginTop: '20px', borderRadius: '30px' }}
           >
             Register
