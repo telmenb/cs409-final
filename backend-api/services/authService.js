@@ -1,20 +1,19 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const UserAuth = require('../models/userAuth');
 
-const users = [];
-
-function userExists(username) {
-  return users.find((user) => user.username === username);
+async function userExists(username) {
+  return UserAuth.findOne({ username });
 }
 
 async function createUser(user) {
   const hashedPassword = await bcrypt.hash(user.password, 10);
   const newUser = { username: user.username, password: hashedPassword };
-  users.push(newUser);
+  await UserAuth.create(newUser);
 }
 
 async function checkLoginAndReturnUser(user) {
-  const foundUser = users.find((findUser) => findUser.username === user.username);
+  const foundUser = await UserAuth.findOne({ username: user.username });
   if (!foundUser) {
     return Promise.resolve(undefined);
   }
@@ -25,4 +24,10 @@ async function checkLoginAndReturnUser(user) {
   return Promise.resolve(undefined);
 }
 
-module.exports = { userExists, createUser, checkLoginAndReturnUser };
+async function clearUserAuthCollection() {
+  await UserAuth.deleteMany({});
+}
+
+module.exports = {
+  userExists, createUser, checkLoginAndReturnUser, clearUserAuthCollection,
+};

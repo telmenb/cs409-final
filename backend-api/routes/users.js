@@ -8,12 +8,12 @@ router.post('/', async (req, res) => {
     res.status(400).send('Missing username or password');
     return;
   }
-  if (authService.userExists(req.body.username)) {
+  if (await authService.userExists(req.body.username)) {
     res.status(400).send('Username already in use');
     return;
   }
   try {
-    authService.createUser({ username: req.body.username, password: req.body.password });
+    await authService.createUser({ username: req.body.username, password: req.body.password });
     res.sendStatus(201);
   } catch {
     res.sendStatus(500);
@@ -39,6 +39,11 @@ router.post('/login', async (req, res) => {
   } catch {
     res.sendStatus(500);
   }
+});
+
+router.delete('/', async (req, res) => {
+  await authService.clearUserAuthCollection();
+  res.status(200).send('UserAuth collection cleared');
 });
 
 module.exports = router;
