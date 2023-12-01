@@ -2,12 +2,8 @@
 const express = require('express');
 const app = express();
 
-// Get env. variables
-const dotenv = require('dotenv');
-dotenv.config();
-const { PORT, DB_CONN_STRING } = process.env;
-
 // Setup DB connection
+const DB_CONN_STRING = 'mongodb+srv://tbayar2:PcblQjj9m2HgKWF1@409-cluster.ib7f6ue.mongodb.net/?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
 mongoose.connect(DB_CONN_STRING);
 
@@ -32,6 +28,7 @@ app.use('/api/cards', require('./routes/cards'));
 app.use('/api/users', require('./routes/users'));
 
 // Listen
+const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });

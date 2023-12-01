@@ -2,6 +2,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserAuth = require('../models/userAuth');
 
+// Bad example lol
+process.env.ACCESS_TOKEN_SECRET = '12345';
+
 async function userExists(username) {
   return UserAuth.findOne({ username });
 }
