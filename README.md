@@ -1,20 +1,12 @@
-## Welcome to GeoQuizzr!
+# Welcome to GeoQuizzr!
 
-Make sure to have the following dependencies/tools installed:
+### To run locally:
+
+Make sure to have the following tools installed:
   - [VSCode](https://code.visualstudio.com/)
   - [Node.js (LTS)](https://nodejs.org/en)
 
-#### To run locally:
-
-After cloning the repo, run the following command in the root directory of the project:  
-```bash
-touch ./backend-api/.env && echo "PORT=4000\nACCESS_TOKEN_SECRET=12345" > ./backend-api/.env
-```
-(this just creates a file called `.env` in `./backend-api/` and writes `PORT=4000` to the newly created file)
-
----
-
-To install the required dependencies:
+Install the required node dependencies:
   - `cd` into `./frontend` and run:
   ```bash
   npm install
@@ -23,8 +15,6 @@ To install the required dependencies:
   ```bash
   npm install
   ```
-
----
 
 Then create two terminals both in the same project root directory.
   - In one, run:
