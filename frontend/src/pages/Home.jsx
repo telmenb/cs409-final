@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <Container
       sx={{
@@ -20,7 +21,7 @@ function Home() {
         textAlign: 'center',
       }}
     >
-      <Grid container spacing={5}>
+      <Grid container spacing={5} sx={{ marginTop: '-30px' }}>
         <Grid item xs={4}>
           <Typography
             sx={{
@@ -93,13 +94,14 @@ function Home() {
               },
             },
           ]}
+          onClick={() => navigate('/carousel')}
         >
           <CardMedia
             sx={{ height: 175 }}
             image="https://lovetoteach87.com/wp-content/uploads/2020/09/flashcards-1591812_1280-940x590.jpg"
           />
           <CardContent>
-            <IconButton component={Link} to="/carousel">
+            <IconButton>
               <PlayCircleIcon sx={{
                 height: 50,
                 width: 50,
@@ -134,13 +136,14 @@ function Home() {
               },
             },
           ]}
+          onClick={() => navigate('/quiz')}
         >
           <CardMedia
             sx={{ height: 175 }}
             image="https://img.freepik.com/premium-vector/examination-result-grade-paper-pencil-isolated-dark-background-vector-illustration-test_547674-578.jpg"
           />
           <CardContent>
-            <IconButton component={Link} to="/quiz">
+            <IconButton>
               <PlayCircleIcon sx={{
                 height: 50,
                 width: 50,
@@ -150,7 +153,7 @@ function Home() {
               />
             </IconButton>
             <Typography sx={{ fontStyle: 'italic' }} gutterBottom variant="h5" component="div">
-              Quiz/Review
+              Review/Quiz
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Test your geography mastery with this quiz, and review your answers after!
