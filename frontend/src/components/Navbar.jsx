@@ -37,7 +37,7 @@ function Navbar() {
         </Grid>
         <Grid item>
           <Link href="/carousel" underline="none">
-            Carousel
+            Learn
           </Link>
         </Grid>
         <Grid item>
