@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiCarousel from 'react-material-ui-carousel';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import FlashCard from './FlashCard';
 
 function Carousel(props) {
   const { cardData } = props;
@@ -11,14 +11,14 @@ function Carousel(props) {
       autoPlay={false}
       indicators={false}
       navButtonsAlwaysVisible
-      sx={{ width: '500px' }}
+      sx={{ width: '700px', height: '500px' }}
     >
       {
         cardData.map((card) => (
-          <Card
-            name={card.name}
-            description={card.description}
-            image={card.imgSrc}
+          <FlashCard
+            frontText={card.frontText}
+            backText={card.backText}
+            imgSrc={card.imgSrc}
           />
         ))
       }

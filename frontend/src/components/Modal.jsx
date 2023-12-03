@@ -18,7 +18,7 @@ const style = {
 
 function Modal(props) {
   const {
-    open, setOpen, name, description,
+    open, setOpen, text,
   } = props;
 
   return (
@@ -26,15 +26,11 @@ function Modal(props) {
       <MuiModal
         open={open}
         onClose={() => { setOpen(false); }}
-        aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {name}
-          </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {description}
+            {text}
           </Typography>
         </Box>
       </MuiModal>
@@ -45,8 +41,7 @@ function Modal(props) {
 Modal.propTypes = {
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default Modal;

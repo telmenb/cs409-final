@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import FlashCard from './FlashCard';
 
 function CardGrid(props) {
   const { cardData } = props;
@@ -9,11 +9,11 @@ function CardGrid(props) {
   return (
     <Grid container spacing={4} justifyContent="center">
       {cardData.map((card) => (
-        <Grid item key={card.id} sx={{ maxWidth: 345 }}>
-          <Card
-            name={card.name}
-            description={card.description}
-            image={card.imgSrc}
+        <Grid item key={card.id} maxWidth={500}>
+          <FlashCard
+            frontText={card.frontText}
+            backText={card.backText}
+            imgSrc={card.imgSrc}
           />
         </Grid>
       ))}

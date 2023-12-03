@@ -5,18 +5,20 @@ const router = express.Router();
 const dummyData = [
   {
     imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Map_of_USA_showing_unlabeled_state_boundaries.png/800px-Map_of_USA_showing_unlabeled_state_boundaries.png',
-    name: 'USA',
-    description: 'Image of the USA',
+    backText: 'Image of the USA',
   },
   {
     imgSrc: 'https://www.50states.com/wp-content/uploads/2020/12/US-Blank-map.jpg',
-    name: 'USA',
-    description: 'Image of the USA',
+    backText: 'Image of the USA',
   },
   {
     imgSrc: 'https://www.homemade-gifts-made-easy.com/image-files/blank-us-map-black-white-state-names-abbreviation-600x464.png',
-    name: 'USA',
-    description: 'Image of the USA',
+    frontText: 'Image and text on front',
+    backText: 'Image of the USA',
+  },
+  {
+    frontText: 'Who has the biggest ego?\na. Brad\nb. David\nc. Lee\nd. Nick',
+    backText: 'a. Brad',
   },
 ];
 
