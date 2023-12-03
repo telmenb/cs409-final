@@ -3,6 +3,7 @@ import {
   TextField, Button, Paper, Typography, Container,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { postApi } from '../services/api';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -13,13 +14,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:4000/api/users', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await postApi('/users', JSON.stringify({ username, password }));
     if (response.status === 201) {
       setError(undefined);
       setConfirmation('User successfully created');

@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Carousel from '../components/Carousel';
+import { getApi } from '../services/api';
 
 function Slider() {
   const [cardsData, setCardsData] = useState(undefined);
 
   async function getCardsData() {
-    const { token } = JSON.parse(localStorage.getItem('user'));
-    const response = await fetch('http://localhost:4000/api/cards', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
+    const response = await getApi('/cards');
     if (response.status === 200) {
       const json = await response.json();
       setCardsData(json.cards);

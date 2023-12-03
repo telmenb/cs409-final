@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
+import { postApi } from '../services/api';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -14,13 +15,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:4000/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await postApi('/users/login', JSON.stringify({ username, password }));
     if (response.status === 200) {
       const json = await response.json();
       localStorage.setItem('user', JSON.stringify(json));
