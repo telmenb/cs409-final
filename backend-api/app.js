@@ -26,6 +26,8 @@ app.use((req, res, next) => {
 // Set Routes
 app.use('/api/cards', require('./routes/cards'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/quizzes', require('./routes/quizzes'));
+app.use('/api/countries', require('./routes/countries'));
 
 // Listen
 const PORT = 4000;
