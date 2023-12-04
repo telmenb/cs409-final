@@ -17,7 +17,8 @@ const dummyData = [
     backText: 'Image of the USA',
   },
   {
-    frontText: 'Who has the biggest ego?\na. Brad\nb. David\nc. Lee\nd. Nick',
+    imgSrc: 'https://www.homemade-gifts-made-easy.com/image-files/blank-us-map-black-white-state-names-abbreviation-600x464.png',
+    frontText: 'Who has the biggest ego?\na. Brad\nb. David\nc. Lee\nd. Nick\nsadfas\nasdfasdfasf\nasdfasfsadf\nasfasfasdf\nasfdasdfasd\nasdfsaf',
     backText: 'a. Brad',
   },
 ];

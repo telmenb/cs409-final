@@ -11,7 +11,7 @@ function Carousel(props) {
       autoPlay={false}
       indicators={false}
       navButtonsAlwaysVisible
-      sx={{ width: '700px', height: '500px' }}
+      sx={{ width: '800px', height: '600px' }}
     >
       {
         cardData.map((card) => (

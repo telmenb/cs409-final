@@ -16,8 +16,8 @@ function FlashCard(props) {
   return (
     <Card
       sx={{
-        padding: '50px',
-        height: '400px',
+        padding: '0px 50px',
+        height: '600px',
         textAlign: 'start',
         display: 'flex',
         justifyContent: 'center',
@@ -30,12 +30,13 @@ function FlashCard(props) {
             <CardMedia
               component="img"
               image={imgSrc}
+              height={frontText ? 600 - 24 * frontText.split(/\n/).length : 600}
               sx={{ objectFit: 'contain' }}
             />
           )}
           { frontText && (
             <Typography sx={{ whiteSpace: 'pre-line' }}>
-              {frontText}
+                {frontText}
             </Typography>
           )}
         </CardContent>
