@@ -13,7 +13,7 @@ pages:
 
   artifacts:
     paths:
-    - frontend/public
+    - public
 
   only:
     - main
