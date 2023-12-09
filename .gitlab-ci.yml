@@ -13,7 +13,9 @@ pages:
 
   artifacts:
     paths:
-    - public
+    - frontend/public
+
+  publish: frontend/public
 
   only:
     - main
