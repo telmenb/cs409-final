@@ -1,0 +1,19 @@
+image: node:lts
+
+cache:
+  paths:
+  - frontend/node_modules
+
+pages:
+  script:
+    - cd frontend && npm install    # Install all dependencies
+    - cd frontend && npm run build  # Build for prod
+    - mv frontend/public _public    # CRA and gitlab pages both use the public folder. Only do this in a build pipeline.
+    - mv frontend/build public      # Move build files to public dir for Gitlab Pages
+
+  artifacts:
+    paths:
+    - frontend/public
+
+  only:
+    - main
