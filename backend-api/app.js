@@ -23,6 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send('Hello world!');
+});
+
 // Set Routes
 app.use('/api/cards', require('./routes/cards'));
 app.use('/api/users', require('./routes/users'));
@@ -30,7 +34,6 @@ app.use('/api/quizzes', require('./routes/quizzes'));
 app.use('/api/countries', require('./routes/countries'));
 
 // Listen
-const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+const server = app.listen(process.env.PORT || 4000, () => {
+  console.log(`Listening at http://${server.address().address}:${server.address().port}`);
 });
