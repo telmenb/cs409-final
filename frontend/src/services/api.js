@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:4000/api';
+// Don't do this IRL
+const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/api' : 'https://lunar-tube-407605.uc.r.appspot.com/api';
 
 function getAuthToken() {
   let token;
