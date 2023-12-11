@@ -18,7 +18,7 @@ function Carousel(props) {
             key={idx}
             frontText={card.frontText}
             backText={card.backText}
-            imgSrc={card.imgSrc}
+            imageUrl={card.imageUrl}
           />
         ))
       }

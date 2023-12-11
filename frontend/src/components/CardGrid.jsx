@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import PropTypes from 'prop-types';
 import FlashCard from './FlashCard';
 
 function CardGrid(props) {
@@ -13,21 +12,12 @@ function CardGrid(props) {
           <FlashCard
             frontText={card.frontText}
             backText={card.backText}
-            imgSrc={card.imgSrc}
+            imageUrl={card.imageUrl}
           />
         </Grid>
       ))}
     </Grid>
   );
 }
-
-CardGrid.propTypes = {
-  cardData: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imgSrc: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-};
 
 export default CardGrid;

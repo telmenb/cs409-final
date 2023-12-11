@@ -8,7 +8,7 @@ import Modal from './Modal';
 
 function FlashCard(props) {
   const {
-    frontText, backText, imgSrc,
+    frontText, backText, imageUrl,
   } = props;
   const [openModal, setOpenModal] = useState(false);
 
@@ -25,10 +25,10 @@ function FlashCard(props) {
     >
       <CardActionArea>
         <CardContent onClick={() => setOpenModal(true)}>
-          { imgSrc && (
+          { imageUrl && (
             <CardMedia
               component="img"
-              image={imgSrc}
+              image={imageUrl}
               height={frontText ? 600 - 24 * frontText.split(/\n/).length : 600}
               sx={{ objectFit: 'contain' }}
             />

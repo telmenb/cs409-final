@@ -4,21 +4,21 @@ const router = express.Router();
 
 const dummyData = [
   {
-    imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Map_of_USA_showing_unlabeled_state_boundaries.png/800px-Map_of_USA_showing_unlabeled_state_boundaries.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Map_of_USA_showing_unlabeled_state_boundaries.png/800px-Map_of_USA_showing_unlabeled_state_boundaries.png',
     backText: 'Image of the USA',
   },
   {
-    imgSrc: 'https://www.50states.com/wp-content/uploads/2020/12/US-Blank-map.jpg',
+    imageUrl: 'https://www.50states.com/wp-content/uploads/2020/12/US-Blank-map.jpg',
     backText: 'Image of the USA',
   },
   {
-    imgSrc: 'https://www.homemade-gifts-made-easy.com/image-files/blank-us-map-black-white-state-names-abbreviation-600x464.png',
+    imageUrl: 'https://www.homemade-gifts-made-easy.com/image-files/blank-us-map-black-white-state-names-abbreviation-600x464.png',
     frontText: 'Image and text on front',
     backText: 'Image of the USA',
   },
   {
-    imgSrc: 'https://www.homemade-gifts-made-easy.com/image-files/blank-us-map-black-white-state-names-abbreviation-600x464.png',
-    frontText: 'Who has the biggest ego?\na. Brad\nb. David\nc. Lee\nd. Nick\nsadfas\nasdfasdfasf\nasdfasfsadf\nasfasfasdf\nasfdasdfasd\nasdfsaf',
+    imageUrl: 'https://www.homemade-gifts-made-easy.com/image-files/blank-us-map-black-white-state-names-abbreviation-600x464.png',
+    frontText: 'Who has the biggest ego?\na. Brad\nb. David\nc. Lee\nd. Nick',
     backText: 'a. Brad',
   },
 ];

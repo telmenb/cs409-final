@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MuiModal from '@mui/material/Modal';
@@ -37,11 +36,5 @@ function Modal(props) {
     </div>
   );
 }
-
-Modal.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-};
 
 export default Modal;
