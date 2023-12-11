@@ -11,7 +11,7 @@ function App() {
   const { username } = useContext(UserContext);
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="/geoquizzr-app">
         {username && <Navbar />}
         <div className="pages">
           <Routes>

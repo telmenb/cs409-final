@@ -1,21 +1,28 @@
 image: node:lts
 
-cache:
-  paths:
-  - frontend/node_modules
-
-pages:
+build:
+  stage: build
+  cache:
+    paths:
+      - frontend/node_modules/
   script:
-    - cd frontend && npm install
+    - cd frontend
+    - npm install
     - npm run build
-    - mv public _public
-    - mv build public
-
   artifacts:
     paths:
-    - frontend/public
+      - frontend/build/
 
-  publish: frontend/public
-
+pages:
+  stage: deploy
+  dependencies:
+    - build
+  script:
+    - rm -rf public
+    - cp frontend/build/index.html frontend/build/404.html
+    - mv frontend/build public
+  artifacts:
+    paths:
+    - public
   only:
     - main
