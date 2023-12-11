@@ -1,6 +1,9 @@
-image: node:lts
+stages:
+  - build
+  - deploy
 
 build:
+  image: node:lts
   stage: build
   cache:
     paths:
@@ -14,6 +17,7 @@ build:
       - frontend/build/
 
 pages:
+  image: node:lts
   stage: deploy
   dependencies:
     - build

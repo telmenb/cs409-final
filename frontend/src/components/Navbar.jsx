@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  Button, Grid, Link, Container, Typography,
+  Button, Grid, Container, Typography,
 } from '@mui/material';
 import { UserContext } from '../contexts/UserContext';
 
 function Navbar() {
   const { username, dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
 
   function logout() {
     localStorage.removeItem('user');
@@ -31,19 +33,46 @@ function Navbar() {
         }}
       >
         <Grid item>
-          <Link href="/" underline="none">
+          <Typography
+            sx={{
+              margin: 0,
+              color: '#1976d2',
+              textDecoration: 'none',
+              font: 'inherit',
+              cursor: 'pointer',
+            }}
+            onClick={() => navigate('/')}
+          >
             Home
-          </Link>
+          </Typography>
         </Grid>
         <Grid item>
-          <Link href="/carousel" underline="none">
+          <Typography
+            sx={{
+              margin: 0,
+              color: '#1976d2',
+              textDecoration: 'none',
+              font: 'inherit',
+              cursor: 'pointer',
+            }}
+            onClick={() => navigate('/carousel')}
+          >
             Learn
-          </Link>
+          </Typography>
         </Grid>
         <Grid item>
-          <Link href="/quiz" underline="none">
+          <Typography
+            sx={{
+              margin: 0,
+              color: '#1976d2',
+              textDecoration: 'none',
+              font: 'inherit',
+              cursor: 'pointer',
+            }}
+            onClick={() => navigate('/quiz')}
+          >
             Quiz
-          </Link>
+          </Typography>
         </Grid>
       </Grid>
       <Container
