@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
@@ -49,11 +48,5 @@ function FlashCard(props) {
     </Card>
   );
 }
-
-FlashCard.propTypes = {
-  frontText: PropTypes.string.isRequired,
-  backText: PropTypes.string.isRequired,
-  imgSrc: PropTypes.string.isRequired,
-};
 
 export default FlashCard;

@@ -1,6 +1,5 @@
 import React from 'react';
 import MuiCarousel from 'react-material-ui-carousel';
-import PropTypes from 'prop-types';
 import FlashCard from './FlashCard';
 
 function Carousel(props) {
@@ -14,8 +13,9 @@ function Carousel(props) {
       sx={{ width: '800px', height: '600px' }}
     >
       {
-        cardData.map((card) => (
+        cardData.map((card, idx) => (
           <FlashCard
+            key={idx}
             frontText={card.frontText}
             backText={card.backText}
             imgSrc={card.imgSrc}
@@ -25,14 +25,5 @@ function Carousel(props) {
     </MuiCarousel>
   );
 }
-
-Carousel.propTypes = {
-  cardData: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imgSrc: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-};
 
 export default Carousel;

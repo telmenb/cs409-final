@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Carousel from '../components/Carousel';
 import { getApi } from '../services/api';
+import AnswerCardList from '../components/AnswerCardList';
 
 function Slider() {
   const [cardsData, setCardsData] = useState(undefined);
@@ -19,19 +20,22 @@ function Slider() {
   }, []);
 
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alilgnItems: 'center',
-      }}
-    >
-      {cardsData && (
-      <Carousel
-        cardData={cardsData}
-      />
-      )}
-    </Container>
+    <div>
+      <Container
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alilgnItems: 'center',
+        }}
+      >
+        {cardsData && (
+        <Carousel
+          cardData={cardsData}
+        />
+        )}
+      </Container>
+      <AnswerCardList cardData={cardsData} />
+    </div>
   );
 }
 
