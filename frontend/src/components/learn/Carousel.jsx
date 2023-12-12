@@ -16,9 +16,7 @@ function Carousel(props) {
         cardData.map((card, idx) => (
           <FlashCard
             key={idx}
-            frontText={card.frontText}
-            backText={card.backText}
-            imageUrl={card.imageUrl}
+            card={card}
           />
         ))
       }

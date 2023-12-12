@@ -55,7 +55,7 @@ function Navbar() {
               font: 'inherit',
               cursor: 'pointer',
             }}
-            onClick={() => navigate('/carousel')}
+            onClick={() => navigate('/learn')}
           >
             Learn
           </Typography>

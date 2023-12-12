@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import Carousel from './pages/Carousel';
+import Learn from './pages/Learn';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { UserContext } from './contexts/UserContext';
@@ -22,8 +22,8 @@ function App() {
           </Routes>
           <Routes>
             <Route
-              path="/carousel"
-              element={username ? <Carousel /> : <Login />}
+              path="/learn"
+              element={username ? <Learn /> : <Login />}
             />
           </Routes>
           <Routes>

@@ -9,12 +9,10 @@ function AnswerCardList(props) {
     <Box marginTop={4}>
       <Container>
         <Grid container spacing={2}>
-          {cardData && cardData.map((item, idx) => (
+          {cardData && cardData.map((card, idx) => (
             <Grid item xs={12} key={idx}>
               <AnswerCard
-                question={item.frontText}
-                answer={item.backText}
-                imageUrl={item.imageUrl}
+                card={card}
               />
             </Grid>
           ))}
