@@ -6,6 +6,7 @@ import Learn from './pages/Learn';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { UserContext } from './contexts/UserContext';
+import Quiz from './pages/Quiz';
 
 function App() {
   const { username } = useContext(UserContext);
@@ -24,6 +25,12 @@ function App() {
             <Route
               path="/learn"
               element={username ? <Learn /> : <Login />}
+            />
+          </Routes>
+          <Routes>
+            <Route
+              path="/quiz"
+              element={username ? <Quiz /> : <Login />}
             />
           </Routes>
           <Routes>

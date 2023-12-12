@@ -21,8 +21,7 @@ function Home() {
             sx={{
               textAlign: 'center',
               marginTop: '10px',
-              fontFamily: 'Optima, sans-serif',
-              fontWeight: 'bold',
+              fontFamily: 'inherit',
               letterSpacing: '2px',
               color: 'navy',
             }}
