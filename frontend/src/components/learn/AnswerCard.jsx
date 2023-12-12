@@ -45,7 +45,7 @@ function AnswerCard(props) {
               src={card.imageUrl}
               height="200" // Adjust the height as needed
               width="auto"
-              style={{ maxWidth: '100%', height: 'auto' }} // Ensure the image fits within the container
+              style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }} // Ensure the image fits within the container
             />
           </Grid>
           {/* Divider */}

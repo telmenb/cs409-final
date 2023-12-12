@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -7,89 +7,51 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-
-// function ShuffleAnswers(incAnswers, cAnswer) {
-//   const array = [...incAnswers, cAnswer];
-//   let currentIndex = array.length;
-//   let randomIndex = array.length;
-//   while (currentIndex > 0) {
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex -= 1;
-
-//     [array[currentIndex], array[randomIndex]] = [
-//       array[randomIndex], array[currentIndex]];
-//   }
-
-//   return array;
-// }
 
 function QuizCard(props) {
   const {
-    question, incAnswers, cAnswer, picture, questionId, onChange,
+    quiz, questionIdx, userAnswers, setUserAnswers,
   } = props;
-  const answers = [...incAnswers, cAnswer];
-  // const answers = ShuffleAnswers(incAnswers, cAnswer);
-  const [value, setValue] = React.useState('');
+  const answers = [...quiz.incorrect_answers, quiz.correct_answer];
+
   const handleChange = (e) => {
-    setValue(e.target.value);
-    onChange(questionId, e.target.value);
+    const arr = userAnswers;
+    arr[questionIdx] = e.target.value;
+    setUserAnswers(arr);
   };
-  if (!picture) {
-    return (
-      <Paper elevation={3}>
-        <Stack
-          direction="column"
-          justifyContent="flex-start"
-          alignItems="center"
-          spacing={2}
-        >
-          <Typography variant="h3">{question}</Typography>
-          <FormControl>
-            <FormLabel id="multiple-choice-answer-label">Pick an Answer</FormLabel>
-            <RadioGroup
-              aria-labelledby="multiple-choice-answer-radios"
-              name="controlled-radio-buttons-group"
-              value={value}
-              onChange={handleChange}
-            >
-              {answers.map((ans) => (
-                <FormControlLabel value={ans} control={<Radio />} label={ans} />
-              ))}
-            </RadioGroup>
-          </FormControl>
-        </Stack>
-      </Paper>
-    );
-  }
+
   return (
-    <Paper elevation={3}>
+    <Paper sx={{ marginTop: '30px' }}>
       <Stack
         direction="column"
         justifyContent="flex-start"
-        alignItems="center"
+        alignItems="flex-start"
         spacing={2}
+        padding={5}
       >
-        <Typography variant="h3">{question}</Typography>
-        <Box
-          component="img"
-          sx={{
-            height: 300,
-            width: 500,
-          }}
-          alt="Figure"
-          src={picture}
-        />
+        <Typography variant="h5">
+          {`${questionIdx + 1}. ${quiz.question}`}
+        </Typography>
+        { quiz.imageUrl && (
+          <Box
+            component="img"
+            sx={{
+              height: 100,
+              width: 150,
+              objectFit: 'contain',
+            }}
+            alt="Figure"
+            src={quiz.imageUrl}
+          />
+        )}
         <FormControl>
-          <FormLabel id="multiple-choice-answer-label">Pick an Answer</FormLabel>
           <RadioGroup
             aria-labelledby="multiple-choice-answer-radios"
             name="controlled-radio-buttons-group"
-            value={value}
             onChange={handleChange}
           >
-            {answers.map((ans) => (
-              <FormControlLabel value={ans} control={<Radio />} label={ans} />
+            {answers.map((ans, idx) => (
+              <FormControlLabel value={ans} key={idx} control={<Radio />} label={ans} />
             ))}
           </RadioGroup>
         </FormControl>
@@ -97,14 +59,5 @@ function QuizCard(props) {
     </Paper>
   );
 }
-
-QuizCard.defaultProps = {
-  question: '',
-  incAnswers: [],
-  cAnswer: '',
-  picture: '',
-  questionId: 0,
-  onChange: undefined,
-};
 
 export default QuizCard;

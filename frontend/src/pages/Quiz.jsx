@@ -3,15 +3,13 @@ import { React, useState } from 'react';
 import { Container } from '@mui/material';
 import PreQuiz from '../components/quiz/PreQuiz';
 import { getApi } from '../services/api';
-import QuizCard from '../components/quiz/QuizCard';
+import QuizCardList from '../components/quiz/QuizCardList';
 
 function Quiz() {
   const [numQuestions, setNumQuestions] = useState(10);
   const [questionDifficulty, setQuestionDifficulty] = useState('easy');
-  const initUsrVals = new Array(2);
-  initUsrVals.fill('');
   const [quizData, setQuizData] = useState(undefined);
-  const [usrAnswers, setUsrAnswers] = useState(initUsrVals);
+  const [userAnswers, setUserAnswers] = useState([]);
 
   const getQuizData = async (e) => {
     e.preventDefault();
@@ -23,41 +21,30 @@ function Quiz() {
     const response = await getApi('/quizzes', reqParams);
 
     if (response.status === 200) {
-      const quizDataJson = await response.json();
-      setQuizData(quizDataJson);
+      const quizDataArr = await response.json();
+      setQuizData(quizDataArr);
+      setUserAnswers(new Array(quizDataArr.length).fill(''));
     }
   };
 
-  function handleAnswerChange(idx, value) {
-    const newArr = usrAnswers.map((v, id) => {
-      if (id === idx) {
-        return value;
-      }
-      return v;
-    });
-    setUsrAnswers(newArr);
-  }
-
   return (
     <Container>
-      { quizData ? quizData.map((quizDataInfo, idx) => (
-        <QuizCard
-          question={quizDataInfo.question}
-          incAnswers={quizDataInfo.incorrect_answers}
-          cAnswer={quizDataInfo.correct_answer}
-          picture={quizDataInfo.imgUrl}
-          questionId={idx}
-          onChange={handleAnswerChange}
-        />
-      )) : (
-        <PreQuiz
-          numQuestions={numQuestions}
-          setNumQuestions={setNumQuestions}
-          questionDifficulty={questionDifficulty}
-          setQuestionDifficulty={setQuestionDifficulty}
-          getQuizData={getQuizData}
-        />
-      )}
+      { quizData
+        ? (
+          <QuizCardList
+            quizData={quizData}
+            userAnswers={userAnswers}
+            setUserAnswers={setUserAnswers}
+          />
+        ) : (
+          <PreQuiz
+            numQuestions={numQuestions}
+            setNumQuestions={setNumQuestions}
+            questionDifficulty={questionDifficulty}
+            setQuestionDifficulty={setQuestionDifficulty}
+            getQuizData={getQuizData}
+          />
+        )}
     </Container>
 
   );
