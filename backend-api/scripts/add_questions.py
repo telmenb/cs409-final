@@ -26,9 +26,11 @@ if difficulty not in ['easy', 'medium', 'hard']:
 
 token = ''
 if os.path.isfile('./token.txt'):
+  print('Using old token')
   f = open('./token.txt', 'r')
   token = f.read()
 else:
+  print('Getting new token')
   tdb_token_url = 'https://opentdb.com/api_token.php'
   res = requests.get(tdb_token_url, params={'command': 'request'})
   token = res.json()['token']
@@ -49,7 +51,7 @@ while amount > 0:
             }
   tdb_response = requests.get(tdb_url, params=parameters)
   if tdb_response.status_code != 200 or tdb_response.json()['response_code'] != 0:
-    print('Error retrieving questions')
+    print(f'Error retrieving questions. Status code: {tdb_response.json()["response_code"]}')
     sys.exit(1)
   questions = tdb_response.json()['results']
 

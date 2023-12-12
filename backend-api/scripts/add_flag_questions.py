@@ -61,7 +61,7 @@ def get_mc_question(difficulty):
       'type': 'multiple',
       'difficulty': difficulty,
       'imageUrl': image_url_base + f'{answer["iso2"]}.svg',
-      'question': 'What is the name of this country?',
+      'question': 'What is the name of this country/region?',
       'correct_answer': answer['name'],
       'incorrect_answers': incorrect_answers
   }
