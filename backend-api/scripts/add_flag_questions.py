@@ -5,7 +5,7 @@ import pandas as pd
 
 if len(sys.argv) < 2:
   print('\nError: Incorrect number of arguments')
-  print('Usage: python3 add_flags.py <# of questions>')
+  print('Usage: python3 add_flag_questions.py <# of questions>')
   sys.exit(1)
 
 # Load data
@@ -77,4 +77,4 @@ for i in range(int(count)):
   res = requests.post(url, json=quiz)
   if res.status_code != 201:
     print('Error: Failed to POST to db')
-    sys.exit()
+    sys.exit(1)

@@ -7,17 +7,15 @@ const Country = require('../models/country'); // Adjust the path accordingly
 const csvUrl = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/csv/countries.csv';
 
 // Utility function to parse CSV data
-const parseCSV = (csvData) => {
-  return new Promise((resolve, reject) => {
-    parse(csvData, { columns: true }, (err, records) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(records);
-      }
-    });
+const parseCSV = (csvData) => new Promise((resolve, reject) => {
+  parse(csvData, { columns: true }, (err, records) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(records);
+    }
   });
-};
+});
 
 // GET route to fetch and populate countries
 router.get('/fetch', async (req, res) => {
@@ -28,7 +26,7 @@ router.get('/fetch', async (req, res) => {
     const records = await parseCSV(response.data);
     const countries = [];
 
-    for (const row of records) {
+    records.forEach((row) => {
       const { name, iso2, region } = row;
 
       // Create a new Country object and push it to the countries array
@@ -38,7 +36,7 @@ router.get('/fetch', async (req, res) => {
         continent: region || '',
         flagImageUrl: `https://raw.githubusercontent.com/cristiroma/countries/main/data/flags/PNG-128/${iso2}-128.png`,
       });
-    }
+    });
 
     // Populate the MongoDB collection with the countries array
     await Country.insertMany(countries);

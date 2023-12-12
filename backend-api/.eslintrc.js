@@ -22,5 +22,7 @@ module.exports = {
     'import/newline-after-import': 0,
     'no-console': 0,
     'linebreak-style': 0,
+    'no-plusplus': 0,
+    'no-await-in-loop': 0,
   },
 };
