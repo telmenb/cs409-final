@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   if (!amount || Number.isNaN(amount)) {
     amount = 12;
   }
-  if (!difficulty || !(difficulty in ['easy', 'medium', 'hard'])) {
+  if (!difficulty || !(['easy', 'medium', 'hard'].includes(difficulty))) {
     difficulty = 'easy';
   }
   let data;

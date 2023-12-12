@@ -3,9 +3,25 @@ import requests
 import random
 import pandas as pd
 
-if len(sys.argv) < 2:
+if len(sys.argv) != 4:
   print('\nError: Incorrect number of arguments')
-  print('Usage: python3 add_flag_questions.py <# of questions>')
+  print('Usage: python3 add_flag_questions.py <amount> <type> <difficulty>')
+  sys.exit(1)
+
+amount = int(sys.argv[1])
+question_type = sys.argv[2]
+difficulty = sys.argv[3]
+
+if amount <= 0 or amount > 500:
+  print('\nError: Invalid questions amount. Please keep it 0<amount<=500')
+  sys.exit(1)
+
+if question_type not in ['multiple', 'boolean']:
+  print('\nError: Invalid question type. Please select from [multiple, boolean]')
+  sys.exit(1)
+
+if difficulty not in ['easy', 'medium', 'hard']:
+  print('\nError: Invalid difficulty. Please select from [easy, medium, hard]')
   sys.exit(1)
 
 # Load data
@@ -69,12 +85,13 @@ def get_tf_question(difficulty):
       'incorrect_answers': ['False'] if correct else ['True']
   }
 
-count = sys.argv[1]
 url = 'http://localhost:4000/api/quizzes'
-for i in range(int(count)):
-  difficulty = random.choice(['easy', 'medium', 'hard'])
-  quiz = get_mc_question(difficulty) if random.choice([True, False]) else get_tf_question(difficulty)
+for i in range(amount):
+  print(f'Adding {i+1}/{amount}')
+  quiz = get_mc_question(difficulty) if question_type == 'multiple' else get_tf_question(difficulty)
   res = requests.post(url, json=quiz)
   if res.status_code != 201:
     print('Error: Failed to POST to db')
     sys.exit(1)
+
+print('Done')
