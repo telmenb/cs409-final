@@ -12,7 +12,10 @@ function QuizCard(props) {
   const {
     quiz, questionIdx, userAnswers, setUserAnswers,
   } = props;
-  const answers = [...quiz.incorrect_answers, quiz.correct_answer];
+  const answers = [quiz.correct_answer].concat(quiz.incorrect_answers)
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
   const handleChange = (e) => {
     const arr = userAnswers;
@@ -21,7 +24,7 @@ function QuizCard(props) {
   };
 
   return (
-    <Paper sx={{ marginTop: '30px' }}>
+    <Paper sx={{ marginTop: '30px', backgroundColor: '#FCFCFC' }}>
       <Stack
         direction="column"
         justifyContent="flex-start"

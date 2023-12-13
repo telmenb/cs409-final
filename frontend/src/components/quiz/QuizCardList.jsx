@@ -4,7 +4,9 @@ import { Button } from '@mui/material';
 import QuizCard from './QuizCard';
 
 function QuizCardList(props) {
-  const { quizData, userAnswers, setUserAnswers } = props;
+  const {
+    quizData, userAnswers, setUserAnswers, setFinished,
+  } = props;
   return (
     <Container>
       {quizData && quizData.map((quiz, idx) => (
@@ -19,6 +21,7 @@ function QuizCardList(props) {
       <Button
         variant="contained"
         sx={{ marginTop: '30px' }}
+        onClick={() => setFinished(true)}
       >
         Finish Quiz
       </Button>

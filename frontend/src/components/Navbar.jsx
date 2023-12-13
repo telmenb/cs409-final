@@ -88,6 +88,7 @@ function Navbar() {
             marginBottom: 0,
             display: 'flex',
             alignItems: 'center',
+            fontFamily: 'inherit',
           }}
         >
           Hello,&nbsp;
@@ -95,7 +96,7 @@ function Navbar() {
           !
         </Typography>
         <Button
-          sx={{ textTransform: 'none', marginLeft: '10px' }}
+          sx={{ textTransform: 'none', marginLeft: '10px', fontFamily: 'inherit' }}
           variant="text"
           size="large"
           onClick={() => logout()}

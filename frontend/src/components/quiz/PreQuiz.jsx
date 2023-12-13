@@ -4,10 +4,26 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { getApi } from '../../services/api';
 
 function PreQuiz({
-  numQuestions, setNumQuestions, questionDifficulty, setQuestionDifficulty, getQuizData,
+  numQuestions, setNumQuestions, questionDifficulty, setQuestionDifficulty, setQuizData,
 }) {
+  const getQuizData = async (e) => {
+    e.preventDefault();
+
+    const reqParams = {
+      amount: numQuestions,
+      difficulty: questionDifficulty,
+    };
+    const response = await getApi('/quizzes', reqParams);
+
+    if (response.status === 200) {
+      const quizDataArr = await response.json();
+      setQuizData(quizDataArr);
+    }
+  };
+
   return (
     <Container
       sx={{
