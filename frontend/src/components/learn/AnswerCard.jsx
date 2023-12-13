@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react';
 import {
   Card, CardContent, Typography, Grid, Divider, CardMedia,
 } from '@mui/material';
+import decodeHtml from '../../services/decodeHtml';
 
 function AnswerCard(props) {
   const { card } = props;
   const [frontText, setFrontText] = useState('');
-
-  function decodeHtml(html) {
-    const txt = document.createElement('textarea');
-    txt.innerHTML = html;
-    return txt.value;
-  }
 
   useEffect(() => {
     const choices = [card.correct_answer].concat(card.incorrect_answers)

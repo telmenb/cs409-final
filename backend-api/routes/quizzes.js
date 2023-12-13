@@ -1,6 +1,9 @@
 const express = require('express');
+const authGuard = require('../middleware/authGuard');
 const Quiz = require('../models/quiz');
 const router = express.Router();
+
+router.use(authGuard);
 
 router.get('/', async (req, res) => {
   let { amount, difficulty } = req.query;

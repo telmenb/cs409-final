@@ -5,17 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Modal from './Modal';
+import decodeHtml from '../../services/decodeHtml';
 
 function FlashCard(props) {
   const { card } = props;
   const [openModal, setOpenModal] = useState(false);
   const [frontText, setFrontText] = useState('');
-
-  function decodeHtml(html) {
-    const txt = document.createElement('textarea');
-    txt.innerHTML = html;
-    return txt.value;
-  }
 
   useEffect(() => {
     const choices = [card.correct_answer].concat(card.incorrect_answers)

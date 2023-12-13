@@ -7,6 +7,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import decodeHtml from '../../services/decodeHtml';
 
 function QuizCard(props) {
   const {
@@ -33,7 +34,7 @@ function QuizCard(props) {
         padding={5}
       >
         <Typography variant="h5">
-          {`${questionIdx + 1}. ${quiz.question}`}
+          {`${questionIdx + 1}. ${decodeHtml(quiz.question)}`}
         </Typography>
         { quiz.imageUrl && (
           <Box
@@ -54,7 +55,7 @@ function QuizCard(props) {
             onChange={handleChange}
           >
             {answers.map((ans, idx) => (
-              <FormControlLabel value={ans} key={idx} control={<Radio />} label={ans} />
+              <FormControlLabel value={ans} key={idx} control={<Radio />} label={decodeHtml(ans)} />
             ))}
           </RadioGroup>
         </FormControl>
